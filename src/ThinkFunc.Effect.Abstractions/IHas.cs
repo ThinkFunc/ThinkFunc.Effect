@@ -9,5 +9,5 @@ public interface IHas<RT, T> : HasCancel<RT>
 {
     protected T It { get; }
 
-    public Eff<RT, T> Eff => Eff<RT, T>(rt => rt.It);
+    public static Eff<RT, T> Eff => Eff<RT, T>(static rt => rt.It);
 }
