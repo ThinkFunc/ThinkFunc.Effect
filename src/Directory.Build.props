@@ -3,6 +3,7 @@
     <Copyright>Copyright © 2020-2021 </Copyright>
     <Authors>Seungyong Shim</Authors>
     <Version>9999.0.0.000</Version>
+    <LangVersion>preview</LangVersion>
     <PackageProjectUrl>https://github.com/seungyongshim/ModificationHere</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/seungyongshim/ModificationHere/blob/master/LICENSE</PackageLicenseUrl>
     <NoWarn>$(NoWarn);CS1591;xUnit1013</NoWarn>
