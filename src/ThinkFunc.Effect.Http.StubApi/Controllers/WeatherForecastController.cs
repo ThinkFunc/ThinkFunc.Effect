@@ -9,9 +9,10 @@ namespace ThinkFunc.Effect.Http.StubApi.Controllers
         [HttpPost()]
         public async Task Post()
         {
-            await Results.Ok("""
-                { "Hello" : "World" }
-            """).ExecuteAsync(HttpContext);
+            await Results.Ok(new
+            {
+                Hello = "World" 
+            }).ExecuteAsync(HttpContext);
         }
     }
 }

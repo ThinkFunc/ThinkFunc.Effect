@@ -24,9 +24,11 @@ public class HttpSpec
 
         var res = await ret.Content.ReadFromJsonAsync<JsonDocument>();
 
-        res.Should().BeEquivalentTo(JsonSerializer.SerializeToDocument(new
+        var expect = JsonSerializer.SerializeToDocument(new
         {
             Hello = "World"
-        }), opt => opt.ComparingByMembers<JsonElement>());
+        });
+
+        res.Should().BeEquivalentTo(expect, opt => opt.ComparingByMembers<JsonElement>());
     }
 }
