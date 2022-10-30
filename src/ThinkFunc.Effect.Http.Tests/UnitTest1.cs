@@ -18,7 +18,6 @@ public class HttpSpec
     public async Task EchoTest()
     {
         using var sut = new WebApplicationFactory<Program>();
-
         using var client = sut.CreateClient();
 
 
@@ -27,15 +26,31 @@ public class HttpSpec
             Hello = "World"
         });
 
-        var res = await JsonSerializer.DeserializeAsync<JsonNode>(ret.Content.ReadAsStream());
-
-        var expect = JsonSerializer.SerializeToNode(new 
+        var res = await JsonSerializer.DeserializeAsync<SampleResponse>(ret.Content.ReadAsStream(), new JsonSerializerOptions
         {
-            hello = "World"
+            PropertyNameCaseInsensitive = true
         });
 
-        Assert.True(res.DeepEquals(expect));
+        res.Should().Be(new SampleResponse("World"));
+    }
 
-         //res.Should().BeEquivalentTo(expect);
+    [Fact]
+    public async Task Echo2Test()
+    {
+        using var sut = new WebApplicationFactory<Program>();
+        using var client = sut.CreateClient();
+
+
+        var ret = await client.PostAsJsonAsync("echo2", new
+        {
+            Hello = "World"
+        });
+
+        var res = await JsonSerializer.DeserializeAsync<SampleResponse>(ret.Content.ReadAsStream(), new JsonSerializerOptions
+        {
+            PropertyNameCaseInsensitive = true
+        });
+
+        res.Should().Be(new SampleResponse("World"));
     }
 }
