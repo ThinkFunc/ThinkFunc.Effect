@@ -13,8 +13,6 @@ builder.Services.Configure<ApiBehaviorOptions>(options =>
 
 builder.Services.AddControllers(options =>
 {
-    //options.ModelBinderProviders.Clear();
-    //options.ModelValidatorProviders.Clear();
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c => c.OperationFilter<RequestBodyTypeFilter>());
@@ -28,10 +26,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();
 
 public partial class Program { }

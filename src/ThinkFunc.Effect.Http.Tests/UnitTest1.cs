@@ -2,6 +2,7 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using System.Text.Json.JsonDiffPatch;
 using System.Text.Json.JsonDiffPatch.Xunit;
+using System.Text.Json.Nodes;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -26,9 +27,9 @@ public class HttpSpec
             Hello = "World"
         });
 
-        using var res = await JsonDocument.ParseAsync(ret.Content.ReadAsStream());
+        var res = await JsonSerializer.DeserializeAsync<JsonNode>(ret.Content.ReadAsStream());
 
-        using var expect = JsonSerializer.SerializeToDocument(new 
+        var expect = JsonSerializer.SerializeToNode(new 
         {
             hello = "World"
         });

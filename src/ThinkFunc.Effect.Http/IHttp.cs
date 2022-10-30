@@ -66,6 +66,6 @@ public partial interface IHttp<RT> : IHas<RT, HttpContext> where RT : struct, IH
         select unit;
     internal static JsonSerializerOptions JsonSerializerOptions { get; } = new JsonSerializerOptions
     {
-        PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
     };
 }
