@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using static LanguageExt.Prelude;
 using LanguageExt;
 using Microsoft.AspNetCore.Http.Metadata;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
+using static LanguageExt.Prelude;
 
 namespace ThinkFunc.Effect.Http.StubApi;
 

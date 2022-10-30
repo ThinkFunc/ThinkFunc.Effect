@@ -1,13 +1,20 @@
 using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
 using ThinkFunc.Effect.Http.StubApi;
 ValidatorOptions.Global.LanguageManager.Enabled = false;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers(config =>
+builder.Services.Configure<ApiBehaviorOptions>(options =>
 {
-    config.ModelBinderProviders.Clear();
-    config.ModelValidatorProviders.Clear();
+    options.SuppressModelStateInvalidFilter = true;
+    options.SuppressMapClientErrors = true;
+});
+
+builder.Services.AddControllers(options =>
+{
+    //options.ModelBinderProviders.Clear();
+    //options.ModelValidatorProviders.Clear();
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c => c.OperationFilter<RequestBodyTypeFilter>());

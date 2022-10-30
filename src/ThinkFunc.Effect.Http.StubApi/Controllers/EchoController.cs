@@ -22,7 +22,10 @@ public class EchoController : ControllerBase
 {
     [HttpPost()]
     [Consumes(typeof(RequestDto), "application/json")]
-    public async Task Post()
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+    public async Task Post(CancellationToken ct)
     {
         var q = IHttp<RT>.ResponseAff(
             from dto in IHttp<RT>.GetRequestAff<RequestDto>()
@@ -32,8 +35,11 @@ public class EchoController : ControllerBase
                 dto.Hello,
             });
 
-        var ret = await q.Run(new(HttpContext, new RequestDtoValidator(), default));
+        using var cts = CancellationTokenSource.CreateLinkedTokenSource(ct);
+        await q.Run(new(HttpContext, RequestDtoValidator, cts));
     }
+
+    internal RequestDtoValidator RequestDtoValidator { get; } = new RequestDtoValidator();
 
     public readonly record struct RT
     (
