@@ -1,3 +1,4 @@
+using FluentValidation;
 using LanguageExt;
 using LanguageExt.Pipes;
 using Microsoft.AspNetCore.Http;
@@ -5,6 +6,15 @@ using ThinkFunc.Effect.Abstractions;
 using static LanguageExt.Prelude;
 
 namespace ThinkFunc.Effect.Http;
+
+public static class ValidationExceptionExtensions
+{
+    public static IResult ToResult(this ValidationException ex) =>
+        Results.ValidationProblem(
+            ex.Errors
+              .GroupBy(x => x.PropertyName)
+              .ToDictionary(x => x.Key, x => x.Select(e => e.ErrorMessage).ToArray()));
+}
 
 public interface IHttp<RT> : IHas<RT, HttpContext>
     where RT : struct, IHasCancel<RT>, IHttp<RT>
@@ -20,6 +30,7 @@ public interface IHttp<RT> : IHas<RT, HttpContext>
             x => Eff(() => Results.Ok(x)),
             e => Eff(() => e.Exception.Case switch
             {
+                ValidationException ex => ex.ToResult(),
                 Exception ex => Results.Problem(ex.Message),
                 _ => Results.StatusCode(500)
             }))

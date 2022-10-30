@@ -1,11 +1,16 @@
+using FluentValidation;
+using ThinkFunc.Effect.Http.StubApi;
+ValidatorOptions.Global.LanguageManager.Enabled = false;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers(config =>
+{
+    config.ModelBinderProviders.Clear();
+    config.ModelValidatorProviders.Clear();
+});
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(c => c.OperationFilter<RequestBodyTypeFilter>());
 
 var app = builder.Build();
 
