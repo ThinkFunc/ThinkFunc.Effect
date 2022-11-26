@@ -9,7 +9,6 @@
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="FluentValidation" Version="11.4.0" />
-    <PackageReference Include="System.ComponentModel.TypeConverter" Version="4.3.0" />
     <ProjectReference Include="..\ThinkFunc.Effect.Abstractions\ThinkFunc.Effect.Abstractions.csproj" />
   </ItemGroup>
 

@@ -6,8 +6,7 @@ using FluentValidation;
 
 namespace ThinkFunc.Effect.Http;
 
-public interface IValid<RT, T> : IHas<RT, IValidator<T>>
-    where RT : struct, IHasCancel<RT>, IValid<RT, T>
+public interface IValid<RT, T> : IHas<RT, IValidator<T>> where RT : struct, IValid<RT, T>
 {
     public static Aff<RT, T> ValidateAff(T dto) =>
         from valid in IHas<RT, IValidator<T>>.Eff
