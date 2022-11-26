@@ -39,17 +39,19 @@ if (app.Environment.IsDevelopment())
 
 app.MapPost("/echo2", static async (HttpContext context, IValidator<RequestDto> validator, CancellationToken ct) =>
 {
-    var q = IHttp<RT>.ResponseAff(
-        from dto in IHttp<RT>.GetRequestAff<RequestDto>()
-        from _1 in IValid<RT, RequestDto>.ValidateAff(dto)
-        select new
-        {
-            dto.Hello,
-        });
-
     using var cts = CancellationTokenSource.CreateLinkedTokenSource(ct);
-    await q.Run(new(context, validator, cts));
-}).Accepts<RequestDto>("application/json");
+    await Aff().Run(new(context, validator, cts));
+
+    static Aff<RT, Unit> Aff() => IHttp<RT>.ResponseAff(
+       from dto in IHttp<RT>.GetRequestAff<RequestDto>()
+       from _1 in IValid<RT, RequestDto>.ValidateAff(dto)
+       select new
+       {
+           dto.Hello,
+       });
+})
+.Accepts<RequestDto>("application/json")
+.WithOpenApi();
 
 
 app.MapControllers();

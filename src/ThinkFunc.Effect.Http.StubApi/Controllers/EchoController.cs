@@ -22,9 +22,9 @@ public class EchoController : ControllerBase
 
     {
         using var cts = CancellationTokenSource.CreateLinkedTokenSource(ct);
-        _ = await Process().Run(new(HttpContext, requestDtoValidator, cts));
+        _ = await Aff().Run(new(HttpContext, requestDtoValidator, cts));
 
-        static Aff<RT, Unit> Process() => IHttp<RT>.ResponseAff(
+        static Aff<RT, Unit> Aff() => IHttp<RT>.ResponseAff(
             from dto in IHttp<RT>.GetRequestAff<RequestDto>()
             from _1 in IValid<RT, RequestDto>.ValidateAff(dto)
             select new

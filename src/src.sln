@@ -8,13 +8,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		..\.editorconfig = ..\.editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThinkFunc.Effect.Abstractions", "ThinkFunc.Effect.Abstractions\ThinkFunc.Effect.Abstractions.csproj", "{C3CF872F-F3C9-4583-91E4-3B52BD45B151}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThinkFunc.Effect.Abstractions", "ThinkFunc.Effect.Abstractions\ThinkFunc.Effect.Abstractions.csproj", "{C3CF872F-F3C9-4583-91E4-3B52BD45B151}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThinkFunc.Effect.Http", "ThinkFunc.Effect.Http\ThinkFunc.Effect.Http.csproj", "{4EC6E5F2-22DD-40F8-AC4F-3BDC7F76E1EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThinkFunc.Effect.Http", "ThinkFunc.Effect.Http\ThinkFunc.Effect.Http.csproj", "{4EC6E5F2-22DD-40F8-AC4F-3BDC7F76E1EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThinkFunc.Effect.Http.Tests", "ThinkFunc.Effect.Http.Tests\ThinkFunc.Effect.Http.Tests.csproj", "{3936967A-B9A8-4328-95B0-CA603077E58A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThinkFunc.Effect.Http.Tests", "ThinkFunc.Effect.Http.Tests\ThinkFunc.Effect.Http.Tests.csproj", "{3936967A-B9A8-4328-95B0-CA603077E58A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ThinkFunc.Effect.Http.StubApi", "ThinkFunc.Effect.Http.StubApi\ThinkFunc.Effect.Http.StubApi.csproj", "{46981036-49DD-428E-8B9B-A9C12F74BFB4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ThinkFunc.Effect.Http.StubApi", "ThinkFunc.Effect.Http.StubApi\ThinkFunc.Effect.Http.StubApi.csproj", "{46981036-49DD-428E-8B9B-A9C12F74BFB4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
